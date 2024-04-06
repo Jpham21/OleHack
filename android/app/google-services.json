@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "616564023756",
+    "project_id": "cspiredata",
+    "storage_bucket": "cspiredata.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616564023756:android:d3d0f25885d94b62e5bd69",
+        "android_client_info": {
+          "package_name": "com.example.network_data"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx1egF3jkd-sQHZbHNxEYzBfqzoPuCWKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
