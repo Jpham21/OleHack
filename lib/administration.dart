@@ -9,25 +9,18 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // const MyApp({
-  //   super.key,
-  //   required this.settingsController,
-  // });
-
-  // final SettingsController settingsController;
-
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Home',
-      home: MainPage(),
-      
+      title: 'Admin Home',
+      //needs to see the results/submissions of the crowd sourced data
+
+      home: AdminPage(),
     );
   }
 }
 
-class MainPage extends StatelessWidget {
+class AdminPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +62,7 @@ class MainPage extends StatelessWidget {
                 // Navigate back to the main page
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => MainPage()),
+                  MaterialPageRoute(builder: (context) => AdminPage()),
                 );
               },
             ),
@@ -85,8 +78,8 @@ class MainPage extends StatelessWidget {
               title: Text('Policies'),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                    //Navigator.of(context).pushReplacement(
-                        //MaterialPageRoute(builder: (context) => PoliciesPage()));
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => PoliciesPage()));
               },
             ),
         
@@ -104,8 +97,8 @@ class MainPage extends StatelessWidget {
                   title: Text('Customize App'),
                   onTap: () {
                     Navigator.pop(context); // Close the drawer
-                      // Navigator.of(context).pushReplacement(
-                      //   MaterialPageRoute(builder: (context) => SettingsView(Controller: SettingsController)));  
+                      //Navigator.of(context).pushReplacement(
+                        //MaterialPageRoute(builder: (context) => SettingsView(Controller: SettingsController)));  
                   },
                 ),
               ],

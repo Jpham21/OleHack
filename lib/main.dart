@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:network_data/profilescreen.dart';
+//import 'package:network_data/profilescreen.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:network_data/settings.dart';
+import 'package:network_data/administration.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+
+  //customize settings (themes modes)
+  // final settingsController = SettingsController(SettingsService());
+  // await settingsController.loadSettings();
+  // runApp(MyApp(settingsController: settingsController));
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Login',
+
       home: HomePage(),
     );
   }
@@ -181,7 +190,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   print(user);
                   if (user != null) {
                     Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => MainPage()));
+                        //MaterialPageRoute(builder: (context) => MainPage()));
+                        MaterialPageRoute(builder: (context) => AdminPage()));
                   }
                 },
                 child: const Text("Login",
