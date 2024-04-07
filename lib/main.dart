@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:network_data/profilescreen.dart';
+import 'package:network_data/networkscreen.dart';
+//import 'package:network_data/network_screen.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'services/location_service.dart';
+//import 'package:permission_handler/permission_handler.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -72,6 +75,9 @@ class _LoginScreenState extends State<LoginScreen> {
       UserCredential userCredential =  await auth.signInWithEmailAndPassword(
         email: email, password: password);
       user = userCredential.user;
+
+      //user logs in check for location
+      requestLocationPermission();
     } on FirebaseAuthException catch (e) {
       if(e.code == "user-not-found") {
         print("No user found for that email");
@@ -150,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       User? user = await loginUsingEmailPassword(email: _emailController.text, password: _passwordController.text, context: context);
                       print(user);
                       if(user != null){
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> ProfileScreen()));
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> MainPage()));
                       }
                     },
                     child: const Text("Login", 
