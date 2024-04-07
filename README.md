@@ -1,6 +1,6 @@
 # network_data
 
-A new Flutter project.
+Please consider the contents in the main and the services branch.
 
 ## Getting Started
 
