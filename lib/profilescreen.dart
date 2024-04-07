@@ -1,64 +1,250 @@
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
-
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+void main() {
+  runApp(MyApp());
 }
 
-class _HomeScreenState extends State<ProfileScreen> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: DrawerExample(),
+      home: MainPage(),
     );
   }
 }
 
-class DrawerExample extends StatefulWidget {
-  const DrawerExample({super.key});
-
-  @override
-  State<DrawerExample> createState() => _DrawerExampleState();
-}
-
-class _DrawerExampleState extends State<DrawerExample> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  void _openDrawer() {
-  _scaffoldKey.currentState!.openDrawer();
-  }
-
-  void _closeDrawer() {
-    Navigator.of(context).pop();
-  }
-
+class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
-      appBar: AppBar(title: const Text('Drawer Demo')),
-      body: Center(
-          child: Text("Welcome to data page"),
-
+      appBar: AppBar(
+        backgroundColor: Color(0xFF00ADEE),
+        title: Row(
+          children: [
+            SizedBox(width: 8), // Add space between the menu icon and title
+            RichText(
+              text: TextSpan(
+                style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                children: [
+                  TextSpan(text: 'DATA',),
+                  TextSpan(text: 'SPACE', style: TextStyle(color: Color(0xFF002E62))),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
       drawer: Drawer(
-        child: Center(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color(0xFF00ADEE),
+              ),
+              child: Text(
+                'Navigation Menu',
+                style: TextStyle(color: Colors.white, fontSize: 24),
+              ),
+            ),
+            ListTile(
+              title: Text('Home'),
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+                // Navigate back to the main page
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => MainPage()),
+                );
+              },
+            ),
+            ListTile(
+                  title: Text('Rewards'),
+                  onTap: () {
+                    Navigator.pop(context); // Close the drawer
+                    // Add navigation to the Rewards page
+                  },
+                ),
+            ListTile(
+              title: Text('Policies'),
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+                // Add navigation to the Policies page
+              },
+            ),
+  
+            ExpansionTile(
+              title: Text('Settings'),
+              children: [
+                ListTile(
+                  title: Text('Profile'),
+                  onTap: () {
+                    Navigator.pop(context); // Close the drawer
+                    // Add navigation to the Profile page
+                  },
+                ),
+                ListTile(
+                  title: Text('Customize App'),
+                  onTap: () {
+                    Navigator.pop(context); // Close the drawer
+                    // Add navigation to the Customize App page
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      body: SingleChildScrollView( // Wrap the body with SingleChildScrollView to avoid overflow
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text('This is the Drawer'),
-              ElevatedButton(
-                onPressed: _closeDrawer,
-                child: const Text('Close Drawer'),
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Large graph for Usage Over Time
+              Container(
+                height: 300, // Adjust height as needed
+                color: Colors.blue, // Placeholder for graph
+                alignment: Alignment.center,
+                child: Text(
+                  'Graph Usage Over Time', // Header for the graph
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+              ),
+              SizedBox(height: 20), // Add spacing between widgets
+              // Separate boxes for Data Used/Total Data and Current Ping
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Box for Data Used/Total Data
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.4, // Adjust width as needed
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0xFF002E62), width: 2.0),
+                      borderRadius: BorderRadius.circular(12.0), // Adjust border radius as needed
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Data Used/Total Data',
+                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF002E62)),
+                          ),
+                          SizedBox(height: 10), // Add spacing between text and stats
+                          Text(
+                            'Data Stats', // Placeholder for actual data stats
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  // Box for Current Ping
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.4, // Adjust width as needed
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0xFF002E62), width: 2.0),
+                      borderRadius: BorderRadius.circular(12.0), // Adjust border radius as needed
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Current Ping',
+                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF002E62)),
+                          ),
+                          SizedBox(height: 10), // Add spacing between text and stats
+                          Text(
+                            'Ping Stats', // Placeholder for actual ping stats
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20), // Add spacing between boxes and progress bar
+              // Label for Progress Bar
+              Text(
+                'Progress Bar',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10), // Add spacing between label and progress bar
+              // Thicker Progress Bar for CSpire Discounts and Rewards
+              LinearProgressIndicator(
+                value: 0.5, // Example value, adjust as needed
+                backgroundColor: Colors.grey,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                minHeight: 20, // Increase thickness of progress bar
+              ),
+              SizedBox(height: 20), // Add spacing before the arrows
+              // Navigation Arrows
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.arrow_left),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => NewPage()),
+                      );
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.arrow_right),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => NewPage()),
+                      );
+                    },
+                  ),
+                ],
               ),
             ],
           ),
         ),
       ),
-      // Disable opening the drawer with a swipe gesture.
-      drawerEnableOpenDragGesture: false,
     );
   }
 }
+
+class NewPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('New Page'),
+      ),
+      body: Center(
+        child: Text(
+          'This is a new page!',
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
+  }
+}
+class ThirdPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Third Page'),
+      ),
+      body: Center(
+        child: Text(
+          'This is the third page!',
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
+  }
+}
+
+
