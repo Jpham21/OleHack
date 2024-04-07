@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:network_data/networkscreen.dart';
+import 'package:network_data/profilescreen.dart';
 //import 'package:network_data/network_screen.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'services/location_service.dart';
+//import 'package:network_data/services/signal_service.dart';
 //import 'package:permission_handler/permission_handler.dart';
 
 void main() async {

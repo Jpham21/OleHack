@@ -4,10 +4,8 @@
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Access User Location</string>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
+	<key>NSAllowsArbitraryLoads</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
